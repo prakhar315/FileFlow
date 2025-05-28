@@ -19,16 +19,21 @@ class MainWindow:
         self.root.title("File Organizer")
         self.root.geometry("900x600")
 
-        # Create a notebook (tabbed interface)
+       # Notebook Initialization
+       # Create a tabbed interface
         self.notebook = ttk.Notebook(self.root)
         self.notebook.pack(fill=tk.BOTH, expand=True, padx=10, pady=10)
 
-        # Create tabs
+       # Initialize and add tabs to the notebook
+       # for organizing, finding unused files, and archiving
         self.organize_tab = OrganizeTab(self.notebook)
         self.unused_files_tab = UnusedFilesTab(self.notebook)
         self.archive_tab = ArchiveTab(self.notebook)
 
-        # Add tabs to notebook
+       # Add the initialized tab frames to the notebook widget.
+       # Each tab is labeled appropriately based on its functionality.
+       # This sets up the tabbed interface for organizing, finding unused files,
+       # and archiving or deleting files.
         self.notebook.add(self.organize_tab.frame, text="Organize Files")
         self.notebook.add(self.unused_files_tab.frame, text="Unused Files")
         self.notebook.add(self.archive_tab.frame, text="Archive & Delete")
