@@ -230,7 +230,7 @@ class ArchiveTab:
 
         self.status_var.set(f"Archived {success_count} files.")
 
-        # Refresh the file list
+        # To Refresh the file list 
         self.load_files()
 
     def archive_entire_folder(self):
