@@ -4,6 +4,9 @@ import os
 import threading
 import hashlib
 
+# Import the `organize_file` function from the `file_organizer` module.  
+# This function is responsible for organizing files based on their types  
+# or extensions to maintain a clean and structured directory layout.
 from file_organizer_app.utils.file_organizer import organize_file
 
 class OrganizeTab:
@@ -69,12 +72,25 @@ class OrganizeTab:
         self.duplicates_frame = ttk.Frame(self.results_notebook)
         self.results_notebook.add(self.duplicates_frame, text="Duplicate Files")
 
-        # Create a treeview for duplicates
+       # Define the width of the first column to 350 pixels  
+       # for consistent layout and better readability.
         self.duplicates_tree = ttk.Treeview(self.duplicates_frame, columns=("File1", "File2"), show="headings")
+
+        # Set the heading text for the first column to "File 1"  
+        # to indicate the path or name of the first duplicate file.
         self.duplicates_tree.heading("File1", text="File 1")
+       
+        # Set the heading text for the second column to "File 2"  
+        # to represent the second duplicate file in each pair. 
         self.duplicates_tree.heading("File2", text="File 2")
+        
+        # Define the width of the first column to 350 pixels  
+        # for consistent layout and better readability.
         self.duplicates_tree.column("File1", width=350)
-        self.duplicates_tree.column("File2", width=350)
+        
+        
+       # Define the width of the second column to 350 pixels  
+       # to match the first column and maintain symmetry. self.duplicates_tree.column("File2", width=350)
         self.duplicates_tree.pack(fill=tk.BOTH, expand=True, padx=5, pady=5)
 
         # Add scrollbar to duplicates tree
@@ -82,19 +98,50 @@ class OrganizeTab:
         duplicates_scrollbar.pack(side=tk.RIGHT, fill=tk.Y)
         self.duplicates_tree.configure(yscrollcommand=duplicates_scrollbar.set)
 
-        # Progress bar
+       # Create a new frame to contain the progress bar widget  
+       # This frame is placed inside the main frame of the application  
+       # and helps organize the layout by grouping related widgets together.
         progress_frame = ttk.Frame(self.frame)
-        progress_frame.pack(side=tk.BOTTOM, fill=tk.X, padx=10, pady=5)
+       
+       # Pack the progress frame at the bottom of the main frame  
+       # Make it stretch horizontally to fill the entire width of the window  
+       # Add padding on the x and y axes for spacing around the frame.
+       progress_frame.pack(side=tk.BOTTOM, fill=tk.X, padx=10, pady=5)
 
-        self.progress_var = tk.DoubleVar()
-        self.progress_bar = ttk.Progressbar(progress_frame, variable=self.progress_var, maximum=100)
-        self.progress_bar.pack(side=tk.TOP, fill=tk.X, padx=5, pady=2)
+       # Create a DoubleVar to track the progress value dynamically  
+       # This variable will store a floating-point number between 0 and 100  
+       # which will control the progress bar's fill level as a percentage.        
+       self.progress_var = tk.DoubleVar()
+        
+       # Create a progress bar widget inside the progress frame  
+       # Link it to the progress_var so the progress bar updates automatically  
+       # Set the maximum value to 100 to represent 100% progress.
+       self.progress_bar = ttk.Progressbar(progress_frame, variable=self.progress_var, maximum=100)
+        
+       # Pack the progress bar at the top of the progress frame  
+       # Make it expand horizontally to fill the entire width available  
+       # Add padding to separate it from other widgets and the frame borders.
+       self.progress_bar.pack(side=tk.TOP, fill=tk.X, padx=5, pady=2)
 
-        # Status label
+        # Create a Tkinter StringVar to hold the status message text  
+        # This variable will be dynamically updated to reflect the current status  
+        # and allows the label text to change automatically when the variable updates.
         self.status_var = tk.StringVar()
+       
+       # Initialize the status variable with the default text "Ready"  
+       # indicating that the application is idle and ready for user interaction  
+       # before any processing or tasks have started.
         self.status_var.set("Ready")
+       
+       # Create a Label widget inside the progress frame to display status messages  
+       # Bind the label's text to the StringVar so it updates automatically  
+       # Use a sunken relief and left-align the text for a classic status bar appearance.
         status_label = ttk.Label(progress_frame, textvariable=self.status_var, relief=tk.SUNKEN, anchor=tk.W)
-        status_label.pack(side=tk.BOTTOM, fill=tk.X)
+       
+       # Pack the status label widget at the bottom of the frame  
+       # Allow it to stretch horizontally to fill the entire width  
+       # so the status message is clearly visible and aligned at the bottom.        
+       status_label.pack(side=tk.BOTTOM, fill=tk.X)
 
     def browse_directory(self):
         """Open a directory browser dialog."""
