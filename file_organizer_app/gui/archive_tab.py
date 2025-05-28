@@ -87,18 +87,23 @@ class ArchiveTab:
         buttons_frame = ttk.Frame(self.frame)
         buttons_frame.pack(fill=tk.X, padx=10, pady=10)
 
+        # Create a button to load files and add it to the buttons_frame
         load_btn = ttk.Button(buttons_frame, text="Load Files", command=self.load_files)
         load_btn.pack(side=tk.LEFT, padx=5, pady=5)
 
+        # Create a button to archive only the selected files and add it to the buttons_frame
         archive_files_btn = ttk.Button(buttons_frame, text="Archive Selected Files", command=self.archive_selected_files)
         archive_files_btn.pack(side=tk.LEFT, padx=5, pady=5)
 
+       # Create a button to archive the entire folder and add it to the buttons_frame
         archive_folder_btn = ttk.Button(buttons_frame, text="Archive Entire Folder", command=self.archive_entire_folder)
         archive_folder_btn.pack(side=tk.LEFT, padx=5, pady=5)
 
+       # Create a button to delete only the selected files and add it to the buttons_frame
         delete_files_btn = ttk.Button(buttons_frame, text="Delete Selected Files", command=self.delete_selected_files)
         delete_files_btn.pack(side=tk.LEFT, padx=5, pady=5)
 
+        # Create a button to delete the entire folder and add it to the buttons_frame
         delete_folder_btn = ttk.Button(buttons_frame, text="Delete Entire Folder", command=self.delete_entire_folder)
         delete_folder_btn.pack(side=tk.LEFT, padx=5, pady=5)
 
